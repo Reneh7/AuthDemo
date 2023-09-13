@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="navbar-header">
+        <h1 class="title">Welcome, <span class="username" th:text="${username}"></span></h1>
+    </div>
+    <div class="navbar-links">
+        <form action="/logout" method="POST">
+            <input type="submit" value="Log Out" class="logout-button">
+        </form>
+    </div>
+</nav>
+<div class="spacer"></div>
+<form action="/addpost" method="POST">
+    <label for="text">New Post:</label>
+    <input type="text" name="postText" id="text">
+    <input type="submit" value="Add Post">
+</form>
+<h2 class="subtitle">Your Posts:</h2>
+<ul>
+    <li th:each="post : ${userPosts}" class="post" th:text="${post.text}"></li>
+</ul>
+</body>
+</html>
